@@ -1,729 +1,738 @@
-player-only: '&4[&cItemEdit&4] &c指令仅供玩家'
-no-item-on-hand: '&4[&cItemEdit&4] &c请拿物品于手上'
-lack-permission: '&4[&cItemEdit&4] &c你需要权限 %permission%'
-lack-permission-generic: '&4[&cItemEdit&4] &c你没有权限'
-blocked-by-censure: '&4[&cItemEdit&4] &c物品有脏话, 无法使用'
-blocked-by-type-restriction: '&4[&cItemEdit&4] &cYou can''t rename this item'
-blocked-by-type-restriction-lore: '&4[&cItemEdit&4] &cYou can''t edit lore on this item'
+player-only: '&4[&cItemEdit&4] &c只有玩家才能使用该命令'
+no-item-on-hand: '&4[&cItemEdit&4] &c您需要手持物品'
+lack-permission: '&4[&cItemEdit&4] &c您缺乏权限，权限： %permission%'
+lack-permission-generic: '&4[&cItemEdit&4] &c你没有权限使用该命令'
+blocked-by-censure: '&4[&cItemEdit&4] &c你不能使用这段文字，因为它包含被屏蔽的词语'
+blocked-by-type-restriction: '&4[&cItemEdit&4] &c您无法为此物品重命名'
+blocked-by-type-restriction-lore: '&4[&cItemEdit&4] &c您无法编辑此物品的lore'
 itemedit:
   help-header: '&9&lItemEdit - 帮助'
   rename:
     description:
-      - '&b&lSet item''s name'
-      - ''
-      - '&b&l提示: &btype &eclear &bto revert name to default'
-    params: '<名称>'
+    - '&b&l设置物品的名称'
+    - ''
+    - '&b&l提示: &b输入 &eclear &b 以将名称恢复为默认值'
+    params: <name>
   lore:
     description:
-      - '&b&lEdit lore'
-      - ''
-      - '&eAdd <文字> &b- add text on a new line'
-      - '&eInsert <行> <文字> &b- add text on selected line'
-      - '&eSet <行> <文字> &b- set or replace text on chosen line'
-      - '&eRemove <行> &b- remove chosen line'
-      - '&eReset &b- remove all lines'
-      - '&eCopy &b- copy current item lore to paste it later'
-      - '&eCopyBook &b- same as copy but from pages of a book as lines'
-      - '&eCopyFile <path> &b- same as copy but from loreCopy.yml'
-      - '&ePaste &b- paste the last copied lore'
-      - '&eReplace <replaced> <replacer> &b- replace all occurrences'
-    params: '<add/set/remove...> [...]'
+    - '&b&l编辑lore'
+    - ''
+    - '&eAdd <text> &b- 添加一个新的行'
+    - '&eInsert <line> <text> &b- 在所选行上添加文本'
+    - '&eSet <line> <text> &b- 在选择的行上设置或替换文本'
+    - '&eRemove <line> &b- 移除选择的行'
+    - '&eReset &b- 移除所有行'
+    - '&eCopy &b- 复制当前物品描述，以便以后黏贴'
+    - '&eCopyBook &b- 与复制相同，但从书的页面中复制为行'
+    - '&eCopyFile <path> &b- 与复制相同，但是是从 loreCopy.yml 中复制'
+    - '&ePaste &b- 粘贴最后一次复制的lore'
+    - '&eReplace <replaced> <replacer> &b- 替换所有出现的内容'
+    params: <add/set/remove...> [...]
     set:
-      params: 'set <行> <文字>'
+      params: set <line> <text>
       description:
-        - '&b&lSet or replace text on selected line'
+      - '&b&l设置或替换所选行上的文本'
     remove:
-      params: 'remove <行>'
+      params: remove <line>
       description:
-        - '&b&lRemove selected line'
+      - '&b&l移除选中的行'
     insert:
-      params: 'insert <行> <文字>'
+      params: insert <line> <text>
       description:
-        - '&b&lAdd text on selected line'
+      - '&b&l在所选行上添加文本'
     copy:
-      feedback: '&9[&fItemEdit&9] &aLore copied'
+      feedback: '&9[&fItemEdit&9] &a复制的lore'
     copyBook:
-      wrong-type: '&4[&cItemEdit&4] &cItem must be a written book or book and quill'
-      feedback: '&9[&fItemEdit&9] &aBook pages copied'
+      wrong-type: '&4[&cItemEdit&4] &c物品必须是一本写有文字的书或书与羽毛笔'
+      feedback: '&9[&fItemEdit&9] &a复制书的页'
     copyFile:
-      no-path: '&4[&cItemEdit&4] &cSelect a path /ie lore copyfile &6<path>'
-      wrong-path: '&9[&fItemEdit&9] &cInvalid path, remember to reload the configuration and check the CaPs'
-      feedback: '&9[&fItemEdit&9] &aConfiguration copied'
+      no-path: '&4[&cItemEdit&4] &c选择路径 /ie lore copyfile &6<路径>'
+      wrong-path: '&9[&fItemEdit&9] &c路径无效，请记得重新加载配置和检查大小写'
+      feedback: '&9[&fItemEdit&9] &a已复制配置'
     paste:
-      feedback: '&9[&fItemEdit&9] &aLore pasted'
-      no-copy: '&4[&cItemEdit&4] &cCopy a lore first'
+      feedback: '&9[&fItemEdit&9] &aLore 已经粘贴'
+      no-copy: '&4[&cItemEdit&4] &c你需要先复制一个lore'
     replace:
-      params: 'replace <replaced> <replacer>'
+      params: replace <replaced> <replacer>
       description:
-        - '&b&lReplace all occurrences on the lore'
-        - ''
-        - '&bIf you need to replace more than a word you have'
-        - '&b to close them inside &e{ }'
-        - ''
-        - '&bExample: &e/ie lore replace New Rusty'
-        - '&b''&eNew sword&b'' -> ''&eRusty sword&b'''
-        - ''
-        - '&bExample 2: &e/ie lore replace {Heavy} {Very light}'
-        - '&b''&eHeavy sword&b'' -> ''&eVery light sword&b'''
+      - '&b&l替换所有 Lore 中的出现内容'
+      - ''
+      - '&b 如果您需要替换多个单词，则必须将它们放在 &e{ } 中关闭'
+      - ''
+      - '&b例如: &e/ie lore replace New Rusty'
+      - '&b''&e新剑&b'' -> ''&e锈剑&b'''
+      - ''
+      - '&b栗子 2: &e/ie lore replace {Heavy} {Very light}'
+      - '&b''&e重剑&b'' -> ''&e非常轻的剑&b'''
   hide:
-    wrong-flag: '&4[&cItemEdit&4] &cWrong Flag Value! &4[&6hover here&4]'
+    wrong-flag: '&4[&cItemEdit&4] &c错误的标志值！&4[&6鼠标悬停在此处&4]'
     description:
-      - '&b&lHide or show components'
-      - ''
-      - '&e<NBT> &bitem flag to edit'
-      - '&e[true/false] &bset the flag value, by default toggle'
-      - ''
-      - '&b&l提示: &bhide banner pannerns with potion_effects flag'
-      - '&b&l提示: &bhide all flags at once with &e/itemedit hideall'
-    params: '<NBT> [true/false]'
+    - '&b&l隐藏或显示组件'
+    - ''
+    - '&e<flag> &b要编辑的项目标志'
+    - '&e[true/false] &b设置标志值，默认情况下切换'
+    - ''
+    - '&b&lTip: &b使用 potion_effects 标志来隐藏旗帜图案'
+    - '&b&lTip: &b使用 &e/itemedit hideall 命令一次性隐藏所有的标志'
+    params: <flag> [true/false]
   hideall:
     description:
-      - '&b&lHide all components'
-      - ''
-      - '&bHides: enchants, potion effects, banner layers, attributes ...'
-      - ''
-      - '&b&l提示: &bhide single components with &e/itemedit hide <NBT> true'
+    - '&b&l隐藏所有组件'
+    - ''
+    - '&b隐藏：附魔、药水效果、旗帜层级、属性 ...'
+    - ''
+    - '&b&lTip: &b使用命令 &e/itemedit hide <标记> true 可以隐藏单个物品的组件'
     params: ''
   damage:
     description:
-      - '&b&lEdit durability'
-      - ''
-      - '&e<耐久度> &bdamage to apply'
-      - '&b&lNote: &e0 &bmeans no damage, full durability'
-    params: '<耐久度>'
+    - '&b&l编辑耐久性'
+    - ''
+    - '&e<durability> &b损坏应用适用'
+    - '&b&lNote: &e0 &b意味着无损坏，无限耐久'
+    params: <durability>
   type:
     description:
-      - '&b&lSet item''s type'
-      - ''
-      - '&b&lNote: &ba few types as Air won''t work'
-    params: '<类别>'
+    - '&b&l设置物品的类型'
+    - ''
+    - '&b&lNote: &b因为空气不能生效，所以需要选择另外一些类型'
+    params: <type>
   unbreakable:
     description:
-      - '&b&lSet unbreakable state'
-      - ''
-      - '&bUnbreakable tools and armors won''t lost durability'
-      - '&e[true/false] &bset unbreakable value, by default toggle'
+    - '&b&l设置牢不可破的状态'
+    - ''
+    - '&b不可破坏的工具和护甲不会损失耐久度'
+    - '&e[true/false] &b设置为不可破坏的值，可以默认切换开关'
     params: '[true/false]'
   amount:
     description:
-      - '&b&lSet amount'
-      - ''
-      - '&e<数值> &bamount to set (up to 127)'
-      - '&b&l提示: &bNegative amounts are subtracted'
-      - '&b from item current amount'
-    params: '<数值>'
+    - '&b&l设置金额'
+    - ''
+    - '&e<amount> &b设置的数量（最多127）'
+    - '&b Tip: 负数数量将从物品当前数量中减去'
+    params: <amount>
   skullowner:
-    wrong-type: '&4[&cItemEdit&4] &cItem must be a player skull'
+    wrong-type: '&4[&cItemEdit&4] &c物品必须是玩家头颅'
     description:
-      - '&b&lSet skull owner'
-      - ''
-      - '&bWorks only on Player''s skulls'
-      - '&e<ID> &bname of the owner'
-      - ''
-      - '&b&l提示: &bPlace and break the skull to update skins'
-    params: '<ID>'
+    - '&b&l设置头颅主人
+    - ''
+    - '仅适用于玩家的头颅'
+    - '&e<name> &b主人的名字'
+    - ''
+    - '&b&lTip:&b放置和破坏头颅来更新皮肤'
+    params: <name>
   color:
-    wrong-type: '&4[&cItemEdit&4] &cItem must be colorable type like leather armors, potions or tipped arrows'
+    wrong-type: '&4[&cItemEdit&4] &c物品必须是可染色的类型，比如皮革装备、烟花星球、药水或有尖端的箭。只有这些物品能够被染色。其他类型的物品，比如石头和木头，是不能被染色的'
     description:
-      - '&b&lSet color'
-      - ''
-      - '&bWorks on leather armor, on servers 1.11+ works on'
-      - '&b any Potion and Tipped arrows too!'
-      - '&e<R> <G> <B> &bare the amount of each color to combine'
-      - '&bEach color is an int value between 0 and 255'
-      - '&bIf you are confused google \"&eRGB color picker&b\"'
-    params: '<R> <G> <B>'
+    - '&b&l设置颜色'
+    - ''
+    - '&b这个功能适用于皮革装备和烟花星球'
+    - '&b在1.11版本及以上的服务器上也适用于任何药水和有尖端的箭!'
+    - '&e<red> <green> <blue> &在合并颜色时，需要指定每种颜色的数量'
+    - '&b每种颜色都是0到255之间的整数值'
+    - '&b如果您不清楚如何使用此功能，请搜索“&eRGB颜色选择器&b'
+    params: <red> <green> <blue>
   enchant:
-    wrong-enchant: '&4[&cItemEdit&4] &cWrong Enchant Value! &4[&6hover here&4]'
+    wrong-enchant: '&4[&cItemEdit&4] &c错误的附魔值！&4[&6悬停这里&4]'
     description:
-      - '&b&lSet enchants'
-      - ''
-      - '&e<附魔> &benchant type'
-      - '&e[等级] &blevel of the enchant, by default &e1'
-      - ''
-      - '&b&l提示: &bSet &e[等级] &bto &e0 &bto remove an enchant'
-    params: '<附魔> [等级]'
+    - '&b&l套装附魔'
+    - ''
+    - '&e<enchant> &b附魔类型'
+    - '&e[level] &b附魔等级，默认&e1'
+    - ''
+    - '&b&lTip: &b设置 &e[level] &b为 &e0，移除一个附魔'
+    params: <enchant> [level]
   booktype:
-    wrong-type: '&4[&cItemEdit&4] &cItem must be a written book'
-    wrong-generation: '&4[&cItemEdit&4] &cWrong Book type Value! &4[&6hover here&4]'
+    wrong-type: '&4[&cItemEdit&4] &c物品必须是一本已经写好的书'
+    wrong-generation: '&4[&cItemEdit&4] &c错误的书类型数值！&4[&6悬停此处&4]'
     description:
-      - '&b&lSet book type'
-      - ''
-      - '&bWorks only on Written books'
-    params: '<书本种类>'
+    - '&b&l设置书的类型'
+    - ''
+    - '&b只针对已经写好的书有效'
+    params: <booktype>
   bookauthor:
-    wrong-type: '&4[&cItemEdit&4] &cItem must be a written book'
+    wrong-type: '&4[&cItemEdit&4] &c物品必须是可书写的书籍'
     description:
-      - '&b&lSet author'
-      - ''
-      - '&bAuthor name may contains spaces and be colored too'
-      - '&bWorks only on Written books'
-    params: '<名称>'
+    - '&b&l设置作者'
+    - ''
+    - '&b作者姓名可以包含空格'
+    - '&b也可以着色仅适用于书面书籍'
+    params: <name>
   potioneffect:
-    wrong-type: '&4[&cItemEdit&4] &cItem must be a potion or a tipped arrow or a suspicious stew'
-    wrong-effect: '&4[&cItemEdit&4] &cWrong Effect Value! &4[&6hover here&4]'
-    itemtag-tip: '&9[&fItemEdit&9] &bYou need to add potion effects to common items? try >ItemTag<'
+    wrong-type: '&4[&cItemEdit&4] &c物品必须是药水、被喷溅的箭或谜之炖菜之一'
+    wrong-effect: '&4[&cItemEdit&4] &c效果数值错误! &4[&6hover here&4]'
+    itemtag-tip: '&9[&fItemEdit&9] &b您需要向普通物品添加药水效果吗？可以尝试使用>ItemTag<插件'
     itemtag-tip-hover:
-      - '&6Click me'
+    - '&6点击此处'
     description:
-      - '&b&lEdit potion''s effects'
-      - ''
-      - '&bWorks on any Potion, Tipped arrows and Suspicious stew!'
-      - '&eAdd <效果> <时间> [等级] &b- add effect'
-      - '&eRemove <效果> &b- removes selected effect'
-      - '&eReset &b- remove all effects'
-    params: '<add/remove/reset> [...]'
+    - '&b&l编辑药水效果'
+    - ''
+    - '&b可以在任何药水、尖锐箭和谜之炖菜中使用!'
+    - '&e增加 <effect> <duration> [level] &b- 添加效果'
+    - '&e移除 <effect> &b- 移除选定的效果'
+    - '&e重置 &b- 删除所有效果'
+    params: <add/remove/reset> [...]
     add:
-      params: 'add <效果> <时间> [等级]'
+      params: add <effect> <duration> [level]
       description:
-        - '&b&lAdds/Override selected effect'
-        - ''
-        - '&e<效果> &beffect type'
-        - '&e<时间> &bduration in seconds, &e0 &bfor instant effects'
-        - '&e[等级] &bUp to 127, by default &e1'
+      - '&b&l添加/覆盖选定的效果'
+      - ''
+      - '&e<effect> &b- 效果类型'
+      - '&e<duration> &b- 持续时间，以秒为单位，&e0&b- 用于即时效果'
+      - '&e[level] &b- 最大可达到127，默认为 &e1'
     remove:
-      params: 'remove <效果>'
+      params: remove <effect>
       description:
-        - '&b&lRemove selected effect'
+      - '&b&l移除选定的效果'
   banner:
-    wrong-type: '&4[&cItemEdit&4] &cItem must be a banner'
-    wrong-color: '&4[&cItemEdit&4] &cWrong Color Value! &4[&6hover here&4]'
-    wrong-pattern: '&4[&cItemEdit&4] &cWrong Pattern Value! &4[&6hover here&4]'
+    wrong-type: '&4[&cItemEdit&4] &c物品必须是旗帜'
+    wrong-color: '&4[&cItemEdit&4] &c物品必须是旗帜  &4[&6悬停此处&4]'
+    wrong-pattern: '&4[&cItemEdit&4] &c错误的图案值！ &4[&6悬停此处&4]'
     description:
-      - '&b&lEdit banner'
+    - '&b&l编辑旗帜'
     set:
-      params: 'set <类型> <颜色> <行>'
+      params: set <type> <color> <line>
       description:
-        - '&b&lReplace the pattern on selected line'
+      - '&b&l替换选定行上的图案'
     add:
-      params: 'add <类型> <颜色>'
+      params: add <type> <color>
       description:
-        - '&b&lAdd a pattern'
+      - '&b&l添加一个图案'
     remove:
-      params: 'remove <行>'
+      params: remove <line>
       description:
-        - '&b&lRemove pattern on selected line'
+      - '&b&l移除选定行中的图案'
     color:
-      params: 'color <行> <颜色>'
+      params: color <line> <color>
       description:
-        - '&b&lChange pattern color on selected line'
+      - '&b&l更改选定行中图案的颜色'
     colorbanner:
-      params: 'colorbanner <颜色>'
+      params: colorbanner <color>
       description:
-        - '&b&lChange banner background color'
+      - '&b&l更改横幅背景颜色'
+    params: ''
   fireworkpower:
-    wrong-type: '&4[&cItemEdit&4] &cItem must be a firework'
+    wrong-type: '&4[&cItemEdit&4] &c这个物品必须是烟花'
     description:
-      - '&b&lSet firework power'
-      - ''
-      - '&e<power> &bpower of the firework, a value betwheen &e0 &band &e5'
-    params: '<power>'
+    - '&b&l设置烟花的强度'
+    - ''
+    - '&e<power> &b烟花的强度，一个介于&e0和&e5之间的值'
+    params: <power>
   firework:
-    wrong-type: '&4[&cItemEdit&4] &cItem must be a firework'
+    wrong-type: '&4[&cItemEdit&4] &c物品必须是一个烟花'
     description:
-      - '&b&lEdit firework'
+    - '&b&l编辑烟花'
     params: ''
   spawnereggtype:
-    wrong-type: '&4[&cItemEdit&4] &cItem must be a spawner egg'
-    wrong-entity: '&4[&cItemEdit&4] &cWrong Egg type Value! &4[&6hover here&4]'
+    wrong-type: '&4[&cItemEdit&4] &c物品必须是生成蛋（spawner egg）'
+    wrong-entity: '&4[&cItemEdit&4] &c错误的蛋类型数值(Wrong Egg type Value)! &4[&6悬停此处&4]'
     description:
-      - '&b&lSet type of entity spawned by spawner egg'
-      - ''
-      - '&e<类型> &btype of the entity'
-      - '&bOnly some entity type are spawnable by eggs'
-    params: '<类型>'
+    - '&b&l设置生成蛋所生成的实体类型'
+    - ''
+    - '&e<type> &b实体的类型'
+    - '&b只有一些实体类型可以通过蛋生成'
+    params: <type>
   attribute:
-    wrong-attribute: '&4[&cItemEdit&4] &cWrong Attribute Value! &4[&6hover here&4]'
-    wrong-operation: '&4[&cItemEdit&4] &cWrong Operation Value! &4[&6hover here&4]'
-    wrong-equipment: '&4[&cItemEdit&4] &cWrong Equipment Value! &4[&6hover here&4]'
+    wrong-attribute: '&4[&cItemEdit&4] &c属性值错误! &4[&6悬停此处&4]'
+    wrong-operation: '&4[&cItemEdit&4] &c操作值错误! &4[&6hover here&4]'
+    wrong-equipment: '&4[&cItemEdit&4] &c装备值错误! &4[&6hover here&4]'
     description:
-      - '&b&lEdit attribute modifiers'
-      - ''
-      - '&eAdd <能力> <数值> [运算规则] [栏位] &b- add new modifiers'
-      - '&eRemove <能力/栏位> &b- removes some modifiers'
-    params: '<add/remove> [...]'
+    - '&b&l编辑属性修饰符'
+    - ''
+    - '&e添加 <attribute>（属性） <amount> （数量） [operation] （操作） [slot] （位置） &b- 添加新的属性修饰符'
+    - '&e移除 <attribute/slot> （属性/位置） &b- 移除一些属性修饰符'
+    params: <add/remove> [...]
     add:
-      params: 'add <能力> <数值> [运算规则] [栏位]'
+      params: add <attribute> <amount> [operation] [slot]
       description:
-        - '&b&lAdd attribute modifier'
-        - ''
-        - '&e<能力> &battribute type'
-        - '&e<数值> &bamount to set'
-        - '&e[运算规则] &bhow the modifier is added, by default sums'
-        - '&e[栏位] &bapply this modifier only when item is on selected'
-        - '&e       equipment slot or any equipment slot if not selected'
-    remove:
-      params: 'remove <能力/栏位>'
-      description:
-        - '&b&lRemove modifiers'
-        - ''
-        - '&e<能力/栏位> &btype to remove, any modifiers with'
-        - '&b                 selected value are removed'
-  tropicalfish:
-    wrong-type: '&4[&cItemEdit&4] &cItem must be a tropical fish bucket'
-    wrong-color: '&4[&cItemEdit&4] &cWrong Color Value! &4[&6hover here&4]'
-    wrong-pattern: '&4[&cItemEdit&4] &cWrong Pattern Value! &4[&6hover here&4]'
-    description:
-      - '&b&lSet property of tropical fish bucket'
+      - '&b&l添加属性修饰符'
       - ''
-      - '&epattern <类别> &b- type of fish'
-      - '&epatterncolor <颜色> &b- pattern color of fish'
-      - '&ebodycolor <颜色> &b- body color of fish'
+      - '&e<attribute> &b属性类型'
+      - '&e<amount> &b要设置的金额'
+      - '&e[operation] &b默认情况下，修饰符是通过求和方式添加的'
+      - '&e[slot] &b仅当物品放置在选定的装备槽上时'
+      - '&e       或者如果未选定则应用于任何装备槽上的修饰符'
+    remove:
+      params: remove <attribute/slot>
+      description:
+      - '&b&l删除修饰符'
+      - ''
+      - '&e<attribute/slot> &b输入“type to remove”'
+      - '&b                 所有具有选定值的修饰符都将被移除'
+      - '&c此处翻译可能有误，也有可能是：要删除的类型，将删除具有选定值的任何修饰符'
+  tropicalfish:
+    wrong-type: '&4[&cItemEdit&4] &c物品必须是一个热带鱼桶'
+    wrong-color: '&4[&cItemEdit&4] &c颜色值错误！&4[&6在此悬停&4]'
+    wrong-pattern: '&4[&cItemEdit&4] &c模式值错误! &4[&6悬停此处&4]'
+    description:
+    - '&b&l设置热带鱼桶的属性'
+    - ''
+    - '&e图案<pattern type> &b- 鱼的类型'
+    - '&e图案颜色<pattern color> &b- 鱼的图案颜色'
+    - '&e体色<Body color> &b- 鱼的身体颜色'
     params: '[...]'
     pattern:
-      params: 'pattern <类别>'
+      params: pattern <type>
       description:
-        - '&b&lSet tropical fish pattern type'
-        - ''
-        - '&e<类别> &bpattern type of the fish'
+      - '&b&l设置热带鱼花纹类型'
+      - ''
+      - '&e<type> &b热带鱼的花纹类型'
     patterncolor:
-      params: 'patterncolor <颜色>'
+      params: patterncolor <color>
       description:
-        - '&b&lSet tropical fish pattern color'
-        - ''
-        - '&e<颜色> &bpattern color of the fish'
+      - '&b&l设置热带鱼花纹颜色'
+      - ''
+      - '&e<color> &b热带鱼的花纹颜色'
     bodycolor:
-      params: 'bodycolor <颜色>'
+      params: bodycolor <color>
       description:
-        - '&b&lSet tropical fish body color'
-        - ''
-        - '&e<颜色> &bbody color of the fish'
+      - '&b&l<color> &b热带鱼的身体颜色'
+      - ''
+      - '&e<color> &b热带鱼的身体颜色'
   repaircost:
     description:
-      - '&b&lEdit Anvil Repair Cost'
-      - ''
-      - '&e<cost> &blevels amount'
-      - '&b&lNote: &banvil repair/rename price is always at least &e1'
-      - '&b&lNote: &bthis command set base repair cost of the item, final levels cost on anvil is based what you do'
-      - '&bMore info at &eminecraft.gamepedia.com/Anvil/Mechanics'
-    params: '<cost>'
+    - '&b&l编辑铁砧修复花费'
+    - ''
+    - '&e<cost> &b等级数量'
+    - '&b&l注意：铁砧修复/重命名价格始终为&e1'
+    - '&b&l注意：该命令设置物品的基础修复花费，打在铁砧上的最终等级花费取决于你所做的操作'
+    - '&b更多信息请参考&eminecraft.gamepedia.com/Anvil/Mechanics。'
+    params: <cost>
   custommodeldata:
     description:
-      - '&b&lEdit custom model data'
-      - ''
-      - '&bUsed for texture packs'
-      - '&e<材质> &bpositive int of target data model'
-    params: '<材质>'
+    - '&b&l编辑自定义模型数据'
+    - ''
+    - '&b用于纹理包'
+    - '&e<value> &b目标数据模型的正整数值'
+    params: <value>
   axolotlvariant:
-    wrong-type: '&4[&cItemEdit&4] &cItem must be a axolotl bucket'
-    wrong-axolotl: '&4[&cItemEdit&4] &cWrong Axolotl Value! &4[&6hover here&4]'
+    wrong-type: '&4[&cItemEdit&4] &c物品必须是一桶美西螈'
+    wrong-axolotl: '&4[&cItemEdit&4] &c错误的美西螈数值！＆4[＆6悬停这里＆4]'
     description:
-      - '&b&lEdit Axolotl Variant on Axolotl bucket'
-      - ''
-      - '&e<type> &bthe type of axolotl'
-    params: '<type>'
+    - '&b&l编辑水獭桶中的美西螈变体'
+    - ''
+    - '&e<type> &b美西螈的类型'
+    params: <type>
   listaliases:
     description:
-      - '&b&lShows allowed aliases parameters'
-      - ''
-      - '&e<类型> &bthe type of parameter to show'
-    params: '<类型>'
-    prefix_line: '&1 ◆  ◆  ◆  ◆  &9指令  &1◆  ◆  ◆  ◆'
-    postfix_line: '&1 ◆  ◆  ◆  ◆  &9指令  &1◆  ◆  ◆  ◆'
+    - '&b&l<type> &b要显示的参数类型'
+    - ''
+    - '&e<type> &b要显示的参数类型'
+    params: <type>
+    prefix_line: '&1 ◆  ◆  ◆  ◆  &9别名  &1◆  ◆  ◆  ◆'
+    postfix_line: '&1 ◆  ◆  ◆  ◆  &9别名  &1◆  ◆  ◆  ◆'
     first_color: '&b'
     second_color: '&e'
-    hover_info: '&9原本数值: &e%default%'
-    hover_type: '&6点击套用'
-    error-pre-hover: "&6&l指令:"
+    hover_info: '&9原始值: &e%default%'
+    hover_type: '&6点击查看'
+    error-pre-hover: '&6&l别名:'
   compass:
-    wrong-type: '&4[&cItemEdit&4] &cItem must be a compass'
+    wrong-type: '&4[&cItemEdit&4] &c物品必须是指南针'
     description:
-      - '&b&lSet compass target location'
-      - ''
-      - '&eSet &b- set your location as compass target'
-      - '&eClear &b- clear compass target'
-    params: '<set/clear>'
+    - '&b&l设置指南针目标位置'
+    - ''
+    - '&e设置 &b- 将您的位置设置为指南针目标'
+    - '&e清除 &b- 清除指南针目标'
+    params: <set/clear>
     set:
-      feedback: '&9[&fItemEdit&9] &aCompass now points to &e%world% %x% %y% %z%'
+      feedback: '&9[&fItemEdit&9] &a指南针现在指向 &e%world% %x% %y% %z%'
     clear:
-      feedback: '&9[&fItemEdit&9] &aCompass target cleared'
+      feedback: '&9[&fItemEdit&9] &a指南针目标已清除'
   goathornsound:
-    wrong-type: '&4[&cItemEdit&4] &cItem must be a goat horn'
-    wrong-sound: '&4[&cItemEdit&4] &cWrong Sound Value! &4[&6hover here&4]'
+    wrong-type: '&4[&cItemEdit&4] &c该物品必须是一只山羊角'
+    wrong-sound: '&4[&cItemEdit&4] &c声音数值错误！&4[&6悬停此处&4]'
     description:
-      - '&b&lSet Goat Horn sound'
-      - ''
-      - '&e<type> &bthe type of sound'
-    params: '<type>'
+    - '&b&l设置山羊角声音'
+    - ''
+    - '&e<type> 声音的类型'
+    params: <type>
 serveritem:
-  help-header: '&9&lServerItem - 帮助'
+  help-header: '&9&l服务器项 - 帮助'
   give:
-    #Holders: %id% %nick% %amount%
-    feedback: "&a给予了 &e%amount% &a个 &e%nick%"
-    #Holders: %id% %nick% %amount% %player_name%
-    log: "[serveritem][give] %player_name% 取得了 %amount% 个 %id% (%nick%)"
+    # 持有者：%id% %nick% %amount%
+    feedback: '&a获得 &e%amount% &a来自 &e%nick%'
+    # 持有者: %id% %nick% %amount% %player_name%
+    log: '[serveritem][give] %player_name% 获得 %amount% 来自 %id% (%nick%)'
     description:
-      - "&b&l给玩家物品"
-      - ""
-      - "&e<ID> &b物品 ID"
-      - "&e[数量] &b给予的数量，预设为 1"
-      - "&e[玩家] &b给谁？预设是自己"
-      - "&e[安静输出] &b如果为是，将安静的给予玩家，没有提示"
-    params: "<ID> [数量] [玩家] [安静输出]"
+    - '&b&l将所选物品提供给玩家'
+    - ''
+    - '&e<id> &b物品的ID'
+    - '&e[amount] &b要赠送物品的数量，默认为1'
+    - '&e[player] &b谁将得到这些物品，默认为您'
+    - '&e[silent] &b如果不向玩家发送反馈，则为true'
+    params: <id> [amount] [player] [silent]
   giveall:
-    #Holders: %id% %nick% %amount%
-    feedback: '&aObtained &e%amount% &aof &e%nick%'
-    #Holders: %id% %nick% %amount% %targets%
-    log: '[serveritem][giveall] %targets% obtained %amount% of %id% (%nick%)'
+    # 持有者: %id% %nick% %amount%
+    feedback: '&a获得 &e%amount% &a来自 &e%nick%'
+    # 持有者: %id% %nick% %amount% %targets%
+    log: '[serveritem][giveall] %targets% 获得 %amount% 来自 %id% (%nick%)'
     description:
-      - '&b&lGive selected item to all online players'
-      - ''
-      - '&e<id> &bId of the item'
-      - '&e[amount] &bamount of items to give, by default 1'
-      - '&e[silent] &btrue if no feedback should be send to players'
-    params: '<id> [amount] [silent]'
+    - '&b&l将所选物品赠送给所有在线玩家'
+    - ''
+    - '&e<id> &b物品的ID'
+    - '&e[amount] &b要赠送物品的数量，默认为1'
+    - '&e[silent] &b如果不向玩家发送反馈，则为true'
+    params: <id> [amount] [silent]
   drop:
-    #Holders: %id% %nick% %amount% %world% %x% %y% %z%
-    log: '[serveritem][drop] dropped %amount% of %id% (%nick%) at %world% %x% %y% %z%'
+    # 持有者: %id% %nick% %amount% %world% %x% %y% %z%
+    log: '[serveritem] [drop] 在 %world% 的 %x% %y% %z% 扔掉 （%nick%） %id% 的 %amount% 个'
     description:
-      - '&b&lDrop selected item at chosen location'
-      - ''
-      - '&e<id> &bId of the item'
-      - '&e<amount> &bamount of items to drop, 1 to 2304'
-      - '&e<world> &bwhich world'
-      - '&e<x> <y> <z> &bcoordinates'
-    params: '<id> <amount> <world> <x> <y> <z>'
+    - '&b&l在选择的位置扔掉选中的物品'
+    - ''
+    - '&e<id> &b物品的ID'
+    - '&e<amount> &b要扔掉的物品数量，1到2304个'
+    - '&e<world> &b在哪个世界'
+    - '&e<x> <y> <z> &b坐标'
+    params: <id> <amount> <world> <x> <y> <z>
   take:
-    #Holders: %id% %nick% %amount%
-    feedback: "&a拿走了 &e%amount% &a个 &e%nick%"
-    #Holders: %id% %nick% %amount% %player_name%
-    log: "[serveritem][take] %player_name% 给予了 %amount% 个 %id% (%nick%)"
+    # 持有者: %id% %nick% %amount%
+    feedback: '&a玩家&e%nick%&a失去了&e%amount%&a个物品'
+    # 持有者: %id% %nick% %amount% %player_name%
+    log: '[serveritem][take] %player_name% 给予了 %nick% %amount% 个 %id%'
     description:
-      - "&b&l拿走玩家物品"
-      - ""
-      - "&e<ID> &b物品 ID"
-      - "&e[数量] &b给予的数量，预设为 1"
-      - "&e[玩家] &b给谁？预设是自己"
-      - "&e[安静输出] &b如果为是，将安静的给予玩家，没有提示"
-    params: "<ID> [数量] [玩家] [安静输出]"
+    - '&b&l从玩家中获取所选物品'
+    - ''
+    - '&e<id> &b物品的ID'
+    - '&e[amount] &b要赠送的物品数量，默认为1'
+    - '&e[player] &b物品赠送给谁，默认是你自己'
+    - '&e[silent] &b如果不需要向玩家发送任何反馈信息，则为true'
+    params: <id> [amount] [player] [silent]
   save:
-    #Holders: %id%
-    success: "&a &e%id% &a已注册"
+    # 持有者: %id%
+    success: '&a物品 &e%id% &a已注册'
     description:
-      - "&b&l注册你手上的物品"
-      - ""
-      - "&e<ID> &b将手上物品以ID方式储存。不能重复 ID。"
-      - ""
-      - "&b&l提示: &b使用 &e/itemstorage update <ID>&b, 来更新该物品"
-      - "&b&l提示: &b若要领取请使用 &e/itemstorage get <ID>"
-    params: "<ID>"
+    - '&b注册你手上所持的物品'
+    - ''
+    - '&e<id> &b识别物品，不区分大小写'
+    - '&b     不能包含空格或句点'
+    - '&b     同时不能选择已被使用的id'
+    - ''
+    - '&b&l提示：使用 &e/serveritem update <id>&b 命令来更改已存在的物品'
+    - '&b&l提示：使用 &e/serveritem give <id>&b 命令来获取已保存的物品'
+    params: <id>
   delete:
-    #Holders: %id%
-    success: "&a物品 &e%id% &a已删除"
+    # 持有者: %id%
+    success: '&a物品 &e%id% &a未注册'
     description:
-      - "&b&l删除选定物品"
-      - ""
-      - "&e<ID> &b物品 ID"
-    params: "<ID>"
+    - '&b&l删除选定的物品'
+    - ''
+    - '&e<id> &b物品id'
+    params: <id>
   update:
-    #Holders: %id%
-    success: "&a物品 &e%id% &a已被更新"
+    # 持有者: %id%
+    success: '&a物品 &e%id% &a已更新'
     description:
-      - "&b&l更新选定物品"
-      - ""
-      - "&b更改 ID 为手上物品"
-      - "&e<ID> &b物品 ID"
-      - ""
-      - "&b&l提示: 使用 &e/itemstorage save <ID>&b, 来创建新物品"
-      - "&b&l提示: 使用 &e/itemstorage delete <ID>&b, 来删除物品"
-    params: "<ID>"
+    - '&b&l更新选定的物品'
+    - ''
+    - '&b用手中的物品更换与 id 相关联的物品'
+    - '&e<id> &b物品id'
+    - ''
+    - '&b&l提示：使用 &e/serveritem save <id>&b 命令创建新物品'
+    - '&b&l提示：使用 &e/serveritem delete <id>&b 命令删除物品'
+    params: <id>
   show:
     description:
-      - "&b&l显示已储存物品"
-      - ""
-      - "&e[页] &b页，预设 1"
-    params: "[页]"
+    - '&b&l打开一个带有服务器保存物品的GUI界面'
+    - ''
+    - '&e[page] &b在界面中默认显示第一页'
+    params: '[page]'
   setnick:
-    #Holders: %id% %nick%
-    success: "&a物品 &e%id% &a已被称作 &e%nick%"
+    # 持有者: %id% %nick%
+    success: '&a物品 &e%id% &a的别名已被更新为 &e%nick%'
     description:
-      - "&b设置物品昵称"
-      - ""
-      - "&b昵称仅用于 &e%nick%&b 或是买卖时"
-      - "&b  预设是该物品名称，没名称就是该物品类别"
-      - ""
-      - "&e<ID> &b物品 ID"
-      - "&e[昵称] &b要设置的昵称"
-      - ""
-      - "&b&l提示: &b重置请用 &e/serveritem setnick <ID>"
-    params: "<ID> [昵称]"
+    - '&b设置所选物品的显示名称'
+    - ''
+    - '&b在购买/出售消息中，将使用持有者的别名 &e%nick%'
+    - '&b  如果物品没有别名，则默认显示物品名称或物品类型'
+    - ''
+    - '&e<id> &b物品id'
+    - '&e[nick] &b要设置的名称为'
+    - ''
+    - '&b&l提示：要恢复默认值，只需使用“&e/serveritem setnick <id>”命令'
+    params: <id> [nick]
   sell:
-    #Holders: %id% %nick% %amount% %price%
-    feedback: "&a购买了 &e%amount% &a个 &e%nick% &a价格: &e%price%"
-    #Holders: %id% %nick% %amount%
-    not-enough-space: "&c你没有空间去买 &6%amount% &c个 &6%nick%"
-    #Holders: %id% %nick% %amount% %price%
-    not-enough-money: "&c你没有 &6%price% &c元去买 &6%amount% &c个 &6%nick%"
-    #Holders: %id% %nick% %amount% %player_name% %price%
-    log: "[serveritem][sell] %player_name% 用 %price% 买了 %amount% 个 %id% (%nick%)"
+    # 持有者: %id% %nick% %amount% %price%
+    feedback: '&a购买了 &e%amount%&a 个 &e%nick%&a，价格为 &e%price%'
+    # 持有者: %id% %nick% %amount%
+    not-enough-space: '&c你的背包空间不足以购买 &6%amount% &c个 &6%nick%'
+    # 持有者: %id% %nick% %amount% %price%
+    not-enough-money: '&c你的钱包里没有足够的钱（&6%price%&c）购买 &6%amount% &c个 &6%nick%'
+    # 持有者: %id% %nick% %amount% %player_name% %price%
+    log: '[serveritem][sell] %player_name%支付了%price%，购买了%amount%个%id%（%nick%)'
     description:
-      - "&b&l贩卖物品给玩家"
-      - ""
-      - "&b如果你想要卖一堆物品请用 SellMAX"
-      - ""
-      - "&e<ID> &b物品 ID"
-      - "&e<数量> &b数量"
-      - "&e<玩家> &b谁应该支付来购买"
-      - "&e<价格> &b价格"
-      - "&e[安静输出] &b安静的使用"
-      - ""
-      - "&b如果玩家没有空间或金钱"
-      - "&b  交易将会失效"
-    params: "<ID> <数量> <玩家> <价格> [安静输出]"
+    - '&b&l向玩家出售物品'
+    - ''
+    - '&b与 SellMax 不同之处在于，您要么将整个数量出售给玩家'
+    - '&b  要么完全不出售'
+    - '&e<id> &b物品的ID'
+    - '&e<amount> &b指商品数量'
+    - '&e<player> &b需要支付货款并获得商品的人员'
+    - '&e<price> &b所购买商品的总价，必须为正数'
+    - '&e[silent] &b购买是否成功，需要留言反馈给玩家'
+    - ''
+    - '&b如果玩家没有足够的货币或足够的库存空间'
+    - '&b  来完成&e <amount>，&b交易将失败'
+    - '&b注意：命令执行者的余额不会受到影响。'
+    params: <id> <amount> <player> <price> [silent]
   buy:
-    #Holders: %id% %nick% %amount% %price%
-    feedback: "&a贩卖了 &e%amount% &a个 &e%nick% &e价格: &a%price%"
-    #Holders: %id% %nick% %amount% %price%
-    not-enough-items: "&c你没有 &6%amount% &c个 &6%nick%"
-    #Holders: %id% %nick% %amount% %player_name% %price%
-    log: "[serveritem][buy] %player_name% 卖了 %amount% 个 %id% (%nick%) 价格: %price%"
+    # 持有者: %id% %nick% %amount% %price%
+    feedback: '&a出售了&e%amount%个&6%nick%&e，售价为&6%price%'
+    # 持有者: %id% %nick% %amount% %price%
+    not-enough-items: '&c你的库存中没有&6%amount%个&6%nick%&c'
+    # 持有者: %id% %nick% %amount% %player_name% %price%
+    log: '[serveritem][buy] %player_name%出售了%amount%个%id%（昵称：%nick%），总售价为%price%'
     description:
-      - "&b&l由玩家那买物品"
-      - ""
-      - "&b如果你想要买一堆物品请用 BuyMAX"
-      - "&b"
-      - "&e<ID> &b物品 ID"
-      - "&e<数量> &b物品数量"
-      - "&e<玩家> &b玩家"
-      - "&e<价格> &b价格"
-      - "&e[安静输出] &b安静的使用"
-      - ""
-      - "&b玩家若没有 &e<数量> &b个 &e<ID> &b交易会失效"
-    params: "<ID> <数量> <玩家> <价格> [安静输出]"
+    - '&b&l从玩家那里购买物品'
+    - ''
+    - '&bBuy和BuyMax的区别在于'
+    - '&b  Buy要么完全购买来自玩家的物品数量，要么不购买'
+    - '&e<id> &b物品的ID'
+    - '&e<amount> &b物品的数量'
+    - '&e<player> &b应该由购买者支付物品费用并获得货款'
+    - '&e<price> &b整个物品数量的价格必须是正数'
+    - '&e[silent] &b如果需要，可以将反馈消息发送给购买者'
+    - ''
+    - '&b如果玩家没有至少&e<amount>&b件&e<id>&b物品，交易将失败'
+    - '&b '
+    - '&b注意：命令执行者的余额不会被改变'
+    params: <id> <amount> <player> <price> [silent]
   sellmax:
-    #Holders: %id% %nick% %amount% %price%
-    feedback: "&aBought &e%amount% &aof &e%nick% &efor &a%price%"
-    #Holders: %id% %nick%
-    not-enough-space: "&cYou don't have enough inventory space to buy any &6%nick%"
-    #Holders: %id% %nick% %price%
-    not-enough-money: "&cYou don't have enough money to buy any &6%nick% &cfor &6%price% &ceach"
-    #Holders: %id% %nick% %amount% %player_name% %price%
-    log: "[serveritem][sell] %player_name% paid %price% for %amount% of %id% (%nick%)"
+    # 持有者: %id% %nick% %amount% %price%
+    feedback: '&a花费&a%price%，购买了&e%nick%&a的&e%amount%&a个物品'
+    # 持有者: %id% %nick%
+    not-enough-space: '&c你的库存空间不足以购买任何&6%nick%'
+    # 持有者: %id% %nick% %price%
+    not-enough-money: '&c你没有足够的钱来购买任何&6%nick%，每个售价为&6%price%'
+    # 持有者: %id% %nick% %amount% %player_name% %price%
+    log: '[serveritem][sell] %player_name% 支付了 %price% 购买了 %amount% 个 %id%（%nick%）'
     description:
-      - "&b&lSell items to player"
-      - ""
-      - "&bSellMax differs from Sell because you may sell the less of amount"
-      - "&b  to player if there are not enough money or space for the whole"
-      - "&e<ID> &b物品 ID"
-      - "&e<数量> &bamount of items"
-      - "&e<玩家> &b谁应该支付来购买"
-      - "&e<价格> &bprice for the whole amount of items, must be positive"
-      - "&e[安静输出] &b安静的使用"
-      - ""
-      - "&bTransaction fails if player has not enough money or enough"
-      - "&b  inventory space at least an item"
-      - "&bIf player buy less than &e<价格>&b paid price will be scaled"
-      - "&bNote: balance of the command executor is untouched"
-    params: "<ID> <数量> <玩家> <价格> [安静输出]"
+    - '&b&l出售物品给玩家'
+    - ''
+    - '&bSellMax与Sell不同之处在于，如果没有足够的钱或空间售出全部商品'
+    - '&b  你可以向买家卖出较少的数量'
+    - '&e<id> &b物品的ID'
+    - '&e<amount> &b物品的数量'
+    - '&e<player> &b应由谁支付款项并获得物品'
+    - '&e<price> &b物品的总价必须是正数'
+    - '&e[silent] &b发送反馈给玩家时必须要真实'
+    - ''
+    - '&b如果玩家没有足够的钱或至少能够容纳一个物品的库存空间'
+    - '&b  则交易失败'
+    - '&b如果玩家购买的物品总价低于 &e<price>&b，价格将会自动调整'
+    - '&b注意：指令执行者的余额不变'
+    params: <id> <amount> <player> <price> [silent]
   buymax:
-    #Holders: %id% %nick% %amount% %price%
-    feedback: "&aSold &e%amount% &aof &e%nick% &efor &a%price%"
-    #Holders: %id% %nick% %amount% %price%
-    not-enough-items: "&cYou don't have any &6%nick% &cto sell in your inventory"
-    #Holders: %id% %nick% %amount% %player_name% %price%
-    log: "[serveritem][buy] %player_name% sold %amount% of %id% (%nick%) for a total of %price%"
+    # 持有者: %id% %nick% %amount% %price%
+    feedback: '&a成功出售 &e%amount% &a个 &e%nick% &e，售价为 &a%price%'
+    # 持有者: %id% %nick% %amount% %price%
+    not-enough-items: '&c你的库存中没有任何可出售的 &6%nick%&c'
+    # 持有者: %id% %nick% %amount% %player_name% %price%
+    log: '[serveritem][buy] %player_name% 出售了 %amount% 个 %nick%（ID号为 %id%），总售价为 %price%'
     description:
-      - "&b&lBuy items from player"
-      - ""
-      - "&bBuyMax differs from Buy because you may buy less of amount"
-      - "&b  from player if he has less than amount items in inventory"
-      - "&e<ID> &b物品 ID"
-      - "&e<数量> &bamount of items"
-      - "&e<玩家> &bwho should pay items and get money"
-      - "&e<价格> &bprice for the whole amount of items, must be positive"
-      - "&e[安静输出] &b安静的使用"
-      - ""
-      - "&bTransaction fails if player has not at least an &e<ID> &bitem"
-      - "&b  on inventory"
-      - "&bIf player sell less than &e<数量>&b price will be scaled"
-      - "&bNote: balance of the command executor is untouched"
-    params: "<ID> <数量> <玩家> <价格> [安静输出]"
+    - '&b&l从玩家那里购买物品'
+    - ''
+    - '&bBuyMax 和 Buy 的不同之处在于，如果玩家库存中的物品数量少于所需数量'
+    - '&b  你可以从他那里购买少于你所需数量的物品'
+    - '&e<id> &b物品的ID'
+    - '&e<amount> &b物品的价格'
+    - '&e<player> &b谁应该支付物品并获得钱'
+    - '&e<price> &b所有物品的价格必须为正数'
+    - '&e[silent] &b发送反馈给玩家时必须要真实'
+    - ''
+    - '&b如果玩家的库存中没有至少一个ID为&e的物品'
+    - '&b  交易将失败'
+    - '&b如果玩家出售的数量少于&e<amount>，&b价格将进行比例缩减'
+    - '&b注：命令执行者的余额不会受到影响'
+    params: <id> <amount> <player> <price> [silent]
 itemstorage:
-  help-header: '&9&lItemStorage - 帮助'
+  help-header: '&9&l物品存储 - 帮助'
   get:
-    #Holders: %id% %amount%
-    success: "&a得到了 &e%amount% &a个 &e%id%"
-    no-inventory-space: "&c你没有空间"
+    # 持有者: %id% %amount%
+    success: '&9[&fItemEdit&9] &a获得了&e%amount%&a个&e%id%'
+    no-inventory-space: '&4[&cItemEdit&4] &c你的背包没有足够的空间'
     description:
-      - "&b&l取得指定物品"
-      - ""
-      - "&e<ID> &bID"
-      - "&e[数量] &b物品数量, 预设为 1"
-    params: "<ID> [数量]"
+    - '&b&l获取所选物品'
+    - ''
+    - '&e<id> &b物品的ID'
+    - '&e[amount] &b要获取的数量，默认为1'
+    params: <id> [amount]
   save:
-    #Holders: %id%
-    success: "&a物品 &e%id% &a已注册"
-    #Holders: %limit%
-    limit-reached: "&c已达注册上限! (%limit%)"
+    # 持有者: %id%
+    success: '&9[&fItemEdit&9] &a物品&e%id%已注册'
+    # Holders: %limit%
+    limit-reached: '&4[&cItemEdit&4] &c你已达到可保存物品的最大数量（%limit%）'
     description:
-      - "&b&l注册你手上的物品"
-      - ""
-      - "&e<ID> &b将手上物品以ID方式储存。不能重复 ID。"
-      - ""
-      - "&b&l提示: &b使用 &e/itemstorage update <ID>&b, 来更新该物品"
-      - "&b&l提示: &b若要领取请使用 &e/itemstorage get <ID>"
-    params: "<ID>"
+    - '&b&l请将你手中的物品进行注册'
+    - ''
+    - '&e<id> &b请对你的物品进行标识'
+    - '&b     不区分大小写，不能包含空格或点号'
+    - '&b     并且不能选择已经使用过的标识'
+    - ''
+    - '&b&l提示：使用“&b/itemstorage update <id>&e”命令可以更改现有物品的信息'
+    - '&b&l提示：使用“&b/itemstorage get <id>&e”命令可以检索已保存的物品信息'
+    params: <id>
   delete:
-    #Holders: %id%
-    success: "&a物品 &e%id% &a已删除"
+    # Holders: %id%
+    success: '&9[&fItemEdit&9] &a物品 &e%id% &a已注销'
     description:
-      - "&b&l删除选定物品"
-      - ""
-      - "&e<ID> &b物品 ID"
-    params: "<ID>"
+    - '&b&l删除所选物品'
+    - ''
+    - '&e<id> &b物品的ID'
+    params: <id>
   update:
-    #Holders: %id%
-    success: "&a物品 &e%id% &a已被更新"
+    # Holders: %id%
+    success: '&9[&fItemEdit&9] &a项目&e％id％已更新'
     description:
-      - "&b&l更新选定物品"
-      - ""
-      - "&b更改 ID 为手上物品"
-      - "&e<ID> &b物品 ID"
-      - ""
-      - "&b&l提示: 使用 &e/itemstorage save <ID>&b, 来创建新物品"
-      - "&b&l提示: 使用 &e/itemstorage delete <ID>&b, 来删除物品"
-    params: "<ID>"
+    - '&b&l更新所选物品'
+    - ''
+    - '&b请用您手上的物品更改与id相关联的物品'
+    - '&e<id> &b物品的ID'
+    - ''
+    - '&b提示：使用&e/itemstorage save <id>&b创建一个新项目'
+    - '&b提示：使用&e/itemstorage delete <id>&b删除项目'
+    params: <id>
   show:
     description:
-      - "&b&l显示已储存物品"
-      - ""
-      - "&e[页] &b页，预设 1"
-    params: "[页]"
+    - '&b&l打开一个你保存的物品的GUI'
+    - ''
+    - '&e[page] &bGUI的页码，默认是 1 '
+    params: '[page]'
 itemeditimport:
   help:
-    - '&a/itemeditimport ItemEditor &2- import items from ItemEditor plugin'
+  - '&a把物品从ItemEditor插件导入到当前插件，请使用命令：&2/itemeditimport ItemEditor'
   itemeditor:
     unable-to-get-item:
-      - '&4[&cItemEdit&4] &cUnable to load item &6%id%'
+    - '&4[&cItemEdit&4] &c无法加载项目 &6%id%'
     already-used-id:
-      - '&4[&cItemEdit&4] &6%id% &cis already used, maybe you already did this command before otherwise you may rename the file ItemEditor/items/%id%.yml'
+    - '&4[&cItemEdit&4] &6%id% 已经被使用，可能是因为您之前已经运行过此命令
+      否则可能需要将文件 ItemEditor/items/%id%.yml 重命名'
     invalid-id:
-      - '&4[&cItemEdit&4] &6%id% &cis not an acceptable id, you may rename the file ItemEditor/items/%id%.yml to an alphanumeric name'
+    - '&4[&cItemEdit&4] &6%id% 不是可接受的ID，您可以将文件 ItemEditor/items/%id%.yml 
+      重命名为字母数字名称'
     import-unsuccess:
-      - '&4[&cItemEdit&4] &cNo items of &6%max% &cwere imported, maybe you already did this command before(?)'
+    - '&4[&cItemEdit&4] &c没有导入 &6%max% &c个物品，可能是因为您之前已经运行过此命令'
     import-success:
-      - '&9[&fItemEdit&9] &aImported &e%done% &aof &e%max% &aitems from ItemEditor'
-      - '&9[&fItemEdit&9] &aImported items: &e%ids%'
+    - '&9[&fItemEdit&9] &a从ItemEditor成功导入 &e%done% &a个物品，共 &e%max% &a个物品'
+    - '&9[&fItemEdit&9] &a已导入的物品ID： &e%ids%'
     import-empty:
-      - '&4[&cItemEdit&4] &cItemEditor has no items to import'
+    - '&4[&cItemEdit&4] &cItemEditor没有要导入的物品'
 itemeditreload:
-  success: '&9[&fItemEdit&9] &aReloaded'
+  success: '&9[&fItemEdit&9] &a已重置'
 gui:
-  middleclick: #middle click can't be used unless on creative mode, an alternative to middle click is pressing hotbar button 1
-    creative: 'Middle Click'
-    other: 'Press 1'
+  middleclick: # 除非处于创造模式，否则无法使用中键点击。一个替代中键点击的方法是按下热键栏上的1号快速键
+    creative: Middle Click
+    other: Press 1
   colorselector:
     title: '&9Choose colors'
     buttons:
       color:
-        - '&6Colors:'
-        - '&e%colors%'
-        - '&7[&fRight Click&7]&b Add &e%color%'
-        - '&7[&fLeft Click&7]&b Remove last color'
-        - '&7[&fShift+Right Click&7]&b Clear colors'
+      - '&6Colors:'
+      - '&e%colors%'
+      - '&7[&f右键点击&7]&b 添加 &e%color% 颜色'
+      - '&7[&f左键点击&7]&b 删除最后的颜色'
+      - '&7[&fShift+右键&7]&b 清除颜色'
   banner:
-    title: '&9Banner Editor'
-    color_selector_title: '&9Color selector'
-    pattern_selector_title: '&9Pattern selector'
+    title: '&9旗帜编辑'
+    color_selector_title: '&9颜色选择器'
+    pattern_selector_title: '&9图案选择器'
     buttons:
       pattern_selector_info:
-        - '&bSelect &6&l%type%'
+      - '&b选择 &6&l%type%'
       color_selector_info:
-        - '&bSelect &6&l%color%'
+      - '&b选择 &6&l%color%'
       position:
-        - '&6Pattern Controller'
-        - ''
-        - '&7[&f%middle_click%&7] &bToggle pattern'
-        - '&7[&fLeft/Right Click&7]&b << Move pattern >>'
+      - '&6模式控制器'
+      - ''
+      - '&7[&f%中键点击%&7] &b切换模式'
+      - '&7[&f左键或右键点击&7]&b << 移动模式 >>'
       type:
-        - '&6Type Selector'
-        - '&bType: &e%type%'
-        - ''
-        - '&7[&fClick&7]&b Change type'
+      - '&6类型选择器'
+      - '&b类型: &e%type%'
+      - ''
+      - '&7[&f点击&7]&b 改变类型'
       color:
-        - '&6Color Selector'
-        - '&bColor: &e%color%'
-        - ''
-        - '&7[&fClick&7]&b Change color'
+      - '&6颜色选择器'
+      - '&b颜色: &e%color%'
+      - ''
+      - '&7[&f点击&7]&b 改变颜色'
   firework:
-    title: '&9Firework Editor'
+    title: '&9烟花编辑器'
     buttons:
       type:
-        - '&6Type Selector'
-        - '&bType: &e%type%'
-        - ''
-        - '&7[&fClick&7]&b Change type'
+      - '&6类型选择器'
+      - '&b类型: &e%type%'
+      - ''
+      - '&7[&f点击&7]&b 改变类型'
       colors:
-        - '&6Colors Selector'
-        - '&bColors: &e%colors%'
-        - ''
-        - '&7[&fClick&7]&b to change colors'
+      - '&6颜色选择器'
+      - '&b颜色: &e%colors%'
+      - ''
+      - '&7[&f点击&7]&b 改变颜色'
       fadecolors:
-        - '&6Fade Colors Selector'
-        - '&bFade Colors: &e%colors%'
-        - ''
-        - '&7[&fClick&7]&b to change colors'
+      - '&6淡入淡出颜色选择器'
+      - '&b淡入淡出颜色: &e%colors%'
+      - ''
+      - '&7[&f点击&7]&b 改变颜色'
       flags:
-        none: '&cNothing active'
-        trail: '&eTrail &aActive'
-        flicker: '&eFlicker &aActive'
-        both: '&eTrail&b and &eFlicker &aActive'
+        none: '&c无活动'
+        trail: '&e拖尾 &a已启用'
+        flicker: '&e闪烁 &a已启用'
+        both: '&e拖尾 &a已启用&b，&e闪烁 &a已启用'
         info:
-          - '&6Trail and Flicker Activator'
-          - '%status%'
-          - ''
-          - '&7[&fRight Click&7]&b Toggle Flicker effect'
-          - '&7[&fLeft Click&7]&b Toggle Trail effect'
+        - '&6拖尾和闪烁激活器'
+        - '状态：%status%'
+        - ''
+        - '&7[&f右键点击&7]&b 切换闪烁效果'
+        - '&7[&f左键点击&7]&b 切换拖尾效果'
       position:
-        - '&bEffect Controller'
-        - ''
-        - '&7[&f%middle_click%&7]&b Toggle effect'
-        - '&7[&fLeft/Right Click&7]&b Move this effect'
+      - '&b效果控制器'
+      - ''
+      - '&7[&f%middle_click%&7]&b 切换效果'
+      - '&7[&f左键或右键点击&7]&b 移动此效果'
       power:
-        - '&bPower: &e%power%'
-        - ''
-        - '&7[&fLeft/Right Click&7]&b << Change >>'
+      - '&b能量: &e%power%'
+      - ''
+      - '&7[&f左键或右键点击&7]&b << 更改 >>'
   previous-page:
-    #Holders: %player_name% %page% %target_page%
+    # Holders: %player_name% %page% %target_page%
     description:
-      - '&6&lPrevious Page'
-      - ''
-      - '&7[&fClick&7]&b Go to page &e%target_page%'
+    - '&6&l上一页'
+    - ''
+    - '&7[&f点击&7]&b 转到页面 &e%target_page%'
   next-page:
-    #Holders: %player_name% %page% %target_page%
+    # Holders: %player_name% %page% %target_page%
     description:
-      - '&6&lNext Page'
-      - ''
-      - '&7[&fClick&7]&b Go to page &e%target_page%'
+    - '&6&l下一页'
+    - ''
+    - '&7[&f点击&7]&b 转到页面 &e%target_page%'
   back:
-    #Holders: %player_name%
+    # Holders: %player_name%
     description:
-      - '&6&lGo Back'
-      - ''
-      - '&7[&fClick&7]&b Go to previous gui'
+    - '&6&l返回'
+    - ''
+    - '&7[&f点击&7]&b 转到上一个 GUI'
   playeritems:
-    #Holders: %player_name% %page%
-    title: '&9%player_name% items - page &b%page%'
+    # Holders: %player_name% %page%
+    title: '&9 %player_name% &7 的物品 - 第 &b%page% &7 页
     page-info:
-      #Holders: %player_name% %page%
+      # 持有者: %player_name% %page%
       description:
-        - '&6&lPage &e&l%page%'
-        - '&7[&fClick&7]&b Toggle view of &eitem&b/&eID'
-        - ''
-        - '&bClick on items:'
-        - '&7> [&fLeft Click&7]&b Gain &e1'
-        - '&7> [&fShift+Left Click&7]&b Gain &e64'
-        - '&7> [&fShift+Right Click&7]&b Delete item'
+      - '&6&l Page &e&l %page%'
+      - '&7[&f点击&7]&b 切换查看&e物品&b/ &eID'
+      - ''
+      - '&b点击物品:'
+      - '&7> [&f左键点击&7]&b 获取 &e1 &7个'
+      - '&7> [&fShift+左键点击&7]&b 获取 &e64 &7个'
+      - '&7> [&fShift+右键点击&7]&b 删除物品'
   serveritems:
-    #Holders: %player_name% %page%
-    title: '&9Server items - page &b%page%'
+    # Holders: %player_name% %page%
+    title: '&9服务器物品 - 页数 &b%page%'
     page-info:
-      #Holders: %player_name% %page%
+      # Holders: %player_name% %page%
       description:
-        - '&6&lPage &e&l%page%'
-        - '&7[&fClick&7]&b Toggle view of &eitem&b/&eID'
-        - ''
-        - '&bClick on items:'
-        - '&7> [&fLeft Click&7]&b Gain &e1'
-        - '&7> [&fShift+Left Click&7]&b Gain &e64'
-        - '&7> [&fShift+Right Click&7]&b Delete item'
+      - '&6&l页数 &e&l%page%'
+      - '&7[&f点击&7]&b 切换查看&e物品&b/ &eID'
+      - ''
+      - '&b点击物品:'
+      - '&7> [&f左键点击k&7]&b 获取 &e1 &7个'
+      - '&7> [&fShift+左键点击7]&b 获取 &e64 &7个'
+      - '&7> [&fShift+右键点击&7]&b 删除物品'
